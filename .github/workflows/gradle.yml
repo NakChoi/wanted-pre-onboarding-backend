@@ -15,10 +15,15 @@ on:
 permissions:
   contents: read
 
+env:
+  S3_BUCKET_NAME: tiltil
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./assignment
 
     steps:
     - uses: actions/checkout@v3
@@ -27,7 +32,37 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+    
+    - name: Add permission 
+      run: chmod +x gradlew
+      working-directory: ${{ env.working-directory }}
+      
     - name: Build with Gradle
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
       with:
         arguments: build
+    
+    - name: Build with Gradle
+      run: ./gradlew build
+      working-directory: ${{ env.working-directory }}
+      
+    - name: Make zip file
+      run: zip -r ./wanted.zip .
+      shell: bash
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.WANTED_AWS_ACCESS_KEY }} 
+        aws-secret-access-key: ${{ secrets.WANTED_AWS_SECREAT_ACCESS_KEY }} 
+        aws-region: ap-northeast-2
+    
+    - name: Upload to S3
+      run: aws s3 cp --region ap-northeast-2 ./wanted.zip s3://$S3_BUCKET_NAME/wanted.zip   
+      
+    - name: Code Deploy
+      run: >
+        aws deploy create-deployment --application-name WANTED
+        --deployment-config-name CodeDeployDefault.AllAtOnce
+        --deployment-group-name tiltil-server
+        --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip, key=wanted.zip
