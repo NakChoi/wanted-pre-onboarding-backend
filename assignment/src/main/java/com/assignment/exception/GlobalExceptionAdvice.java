@@ -35,7 +35,16 @@ public class GlobalExceptionAdvice {
     }
 
     @ExceptionHandler
-    public ResponseEntity handeCustomException(CustomException customException){
+    public ResponseEntity handleCustomException(CustomException customException){
+        log.error("handleCustomException : ", customException.getMessage());
+
+        final CustomErrorResponse errorResponse = CustomErrorResponse.of(customException.getExceptionCode());
+
+        return new ResponseEntity<>(errorResponse, customException.getExceptionCode().getHttpStatus());
+    }
+
+    @ExceptionHandler
+    public ResponseEntity handleAuthenticationCustomException(CustomAuthenticationException customException){
         log.error("handleCustomException : ", customException.getMessage());
 
         final CustomErrorResponse errorResponse = CustomErrorResponse.of(customException.getExceptionCode());
