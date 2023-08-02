@@ -3,6 +3,7 @@ package com.assignment.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.BindingResult;
 
 import javax.validation.ConstraintViolation;
@@ -17,6 +18,7 @@ public class ErrorResponse {
     private List<ConstraintViolationError> violationErrors;
     private CustomErrors customErrors;
     private HttpStatus httpStatus;
+    private String message;
 
 
     private ErrorResponse(List<FieldError> fieldErrors, List<ConstraintViolationError> violationErrors) {
@@ -32,6 +34,11 @@ public class ErrorResponse {
         this.httpStatus = httpStatus;
     }
 
+    private ErrorResponse(HttpStatus httpStatus, String message) {
+        this.httpStatus = httpStatus;
+        this.message = message;
+    }
+
     public static ErrorResponse of(BindingResult bindingResult) {
         return new ErrorResponse(FieldError.of(bindingResult), null);
     }
@@ -41,6 +48,10 @@ public class ErrorResponse {
     }
 
     public static ErrorResponse of(ExceptionCode exceptionCode){
+        return new ErrorResponse(CustomErrors.of(exceptionCode));
+    }
+
+    public static ErrorResponse of(AuthenticationException exceptionCode){
         return new ErrorResponse(CustomErrors.of(exceptionCode));
     }
 
@@ -107,6 +118,30 @@ public class ErrorResponse {
         }
 
         public static CustomErrors of(ExceptionCode exceptionCode){
+
+            CustomErrors customErrors = new CustomErrors(exceptionCode.getHttpStatus(), exceptionCode.getMessage());
+            return customErrors;
+        }
+
+        public static CustomErrors of(AuthenticationException exceptionCode){
+
+            CustomErrors customErrors = new CustomErrors(HttpStatus.UNAUTHORIZED, exceptionCode.getMessage());
+            return customErrors;
+        }
+    }
+
+    @Getter
+    public static class AuthenticationCustomErrors{
+
+        private HttpStatus httpStatus;
+        private String message;
+
+        private AuthenticationCustomErrors(HttpStatus httpStatus, String message) {
+            this.httpStatus = httpStatus;
+            this.message = message;
+        }
+
+        public static CustomErrors of(AuthenticationCustomErrors exceptionCode){
 
             CustomErrors customErrors = new CustomErrors(exceptionCode.getHttpStatus(), exceptionCode.getMessage());
 
