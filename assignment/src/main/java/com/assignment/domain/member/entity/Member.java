@@ -1,6 +1,7 @@
 package com.assignment.domain.member.entity;
 
 
+import com.assignment.domain.post.entity.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,10 +16,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Member {
 
-    public Member(String email) {
-        this.email = email;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberId;
@@ -32,10 +29,11 @@ public class Member {
     @Column
     private String password;
 
-
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member")
+    private List<Post> posts = new ArrayList<>();
 
 }
 
