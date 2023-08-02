@@ -21,7 +21,7 @@ import java.net.URI;
 @Valid
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/members")
+@RequestMapping("/v1/api/members")
 public class MemberController {
 
     private final MemberService memberService;
@@ -46,19 +46,6 @@ public class MemberController {
         return new ResponseEntity(new SingleResponseDto(response), HttpStatus.OK);
     }
 
-
-    @PatchMapping("/{member-id}")
-    public ResponseEntity patchMember(@PathVariable("member-id") @Positive Long memberId,
-                                      @Valid @RequestBody MemberDto.Patch memberPatchDto){
-
-        Member member = memberMapper.memberPatchToMember(memberPatchDto);
-        member.setMemberId(memberId);
-
-        Member updatedMember = memberService.updateMember(member);
-        MemberDto.Response response = memberMapper.memberToMemberResponse(updatedMember);
-
-        return new ResponseEntity(new SingleResponseDto(response), HttpStatus.OK);
-    }
 
 
     @DeleteMapping("/{member-id}")
