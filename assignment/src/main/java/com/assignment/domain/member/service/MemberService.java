@@ -49,17 +49,6 @@ public class MemberService {
         return verifyExistsMemberId(memberId);
     }
 
-    public Member updateMember(Member member) {
-        Member verifiedMember = verifyExistsMemberId(member.getMemberId());
-
-        if(!passwordEncoder.matches(member.getPassword(), verifiedMember.getPassword())){
-            throw new CustomException(ExceptionCode.PASSWORD_NOT_MATCH);
-        }
-
-        customBeanUtils.copyNonNullProperties(member, verifiedMember);
-
-        return verifiedMember;
-    }
 
     public void deleteMember(Long memberId) {
 
