@@ -20,7 +20,7 @@ services:
       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/test?useSSL=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: "root"
-      SPRING_DATASOURCE_PASSWORD: "tset1234"
+      SPRING_DATASOURCE_PASSWORD: "test1234"
     depends-on:
       - db
     networks:
