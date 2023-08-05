@@ -1,0 +1,20 @@
+verison: '3'
+services:
+  db:
+    image: mysql:8.1.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  app:
+    image: ghcr.io/nakchoi/wanted-pre-onboarding-backend:deploy
+    environment:
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    links:
+      - db:db
+    ports:
+      - "8080:8080"
+    restart: always
