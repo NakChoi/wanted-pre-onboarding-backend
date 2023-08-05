@@ -4,12 +4,12 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: create
-#  datasource:
-##    url: jdbc:mysql://localhost:3306/mysqlDB
-#    url: ${MYSQL_URL}
-#    username: root
-#    password: "!As1032113"
-#    driver-class-name: com.mysql.cj.jdbc.Driver
+  datasource:
+#    url: jdbc:mysql://localhost:3306/mysqlDB
+    url: ${MYSQL_URL}
+    username: air
+    password: "test1234"
+    driver-class-name: com.mysql.cj.jdbc.Driver
 mail:
   address:
     admin: admin@gmail.com
