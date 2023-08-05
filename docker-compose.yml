@@ -5,8 +5,8 @@ services:
       MYSQL_HOST: air
       MYSQL_DATABASE: test
       MYSQL_ROOT_PASSWORD: test1234
-    # volumes:
-    #   - ./data:/var/lib/mysql
+    volumes:
+      - ./data:/var/lib/mysql
     ports:
       - "3306:3306"
     restart: always
