@@ -72,6 +72,7 @@ jobs:
           script: |
             export JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }}
             export MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}
+            export MYSQL_URL=${{ secrets.MYSQL_URL }}
 
             docker compose pull
             docker compose down
