@@ -23,7 +23,6 @@ public class MemberAuthenticationFailureHandler extends Throwable implements Aut
                                         AuthenticationException exception) throws IOException,RuntimeException {
 
         log.error(" Authentication fail : {}", exception.getMessage());
-        System.out.println("========================================================");
         sendErrorResponse(response, exception);
     }
 
