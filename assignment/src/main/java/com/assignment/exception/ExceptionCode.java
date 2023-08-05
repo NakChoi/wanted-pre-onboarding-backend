@@ -10,6 +10,7 @@ public enum ExceptionCode {
     PASSWORD_NOT_MATCH(HttpStatus.UNAUTHORIZED, "Password is Not Matched"),
     ACCESSTOKEN_EXPIRATION(HttpStatus.UNAUTHORIZED, "AceessToken is Expired"),
     POST_EXISTS(HttpStatus.CONFLICT, "Post Exists"),
+    POST_NOT_EXISTS(HttpStatus.NOT_FOUND, "Post Not Found"),
     EMAIL_FORMAT_INCORRECT(HttpStatus.UNAUTHORIZED, "Email format Incorrect"),
     PASSWORD_FORMAT_INCORRECT(HttpStatus.UNAUTHORIZED, "Password format Incorrect");
 
