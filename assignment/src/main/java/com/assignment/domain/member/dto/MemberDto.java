@@ -1,6 +1,7 @@
 package com.assignment.domain.member.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Pattern;
 public class MemberDto {
 
     @Getter
+    @Builder
     public static class Post{
         @NotBlank
         @Pattern(regexp = ".*@.*", message = "이메일 주소 형식이 아닙니다.")
