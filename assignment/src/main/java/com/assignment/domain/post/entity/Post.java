@@ -3,17 +3,18 @@ package com.assignment.domain.post.entity;
 
 import com.assignment.domain.audit.Auditable;
 import com.assignment.domain.member.entity.Member;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
+@Builder
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
 public class Post extends Auditable {
+
+    public Post(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
