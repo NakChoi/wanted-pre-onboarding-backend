@@ -2,9 +2,9 @@ services:
   db:
     image: mysql:8.1.0
     environment:
-      - MYSQL_HOST: air
-      - MYSQL_DATABASE: test
-      - MYSQL_ROOT_PASSWORD: test1234
+      MYSQL_HOST: air
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: test1234
     volumes:
       - ./data:/var/lib/mysql
     ports:
