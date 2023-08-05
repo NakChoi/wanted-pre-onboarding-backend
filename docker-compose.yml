@@ -2,16 +2,29 @@ services:
   db:
     image: mysql:8.1.0
     environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_HOST: '%'
       MYSQL_ROOT_PASSWORD: test1234
     volumes:
       - ./data:/var/lib/mysql
     ports:
       - "3306:3306"
-    restart: always
+    networks:
+      - test_network_02
   app:
     image: ghcr.io/nakchoi/wanted-pre-onboarding-backend:deploy
-    environment:
-      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+    restart: always
     ports:
       - "8080:8080"
-    restart: always
+    environment:
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/test?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "tset1234"
+    depends-on:
+      - db
+    networks:
+      - test_network_02
+
+networks:
+  test_network_02:
