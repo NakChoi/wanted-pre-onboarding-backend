@@ -12,6 +12,7 @@ services:
     environment:
       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_URL: ${MYSQL_URL}
     links:
       - db:db
     ports:
