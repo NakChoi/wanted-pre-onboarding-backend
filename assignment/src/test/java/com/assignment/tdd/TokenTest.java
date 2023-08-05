@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@ActiveProfiles("server")
+@ActiveProfiles("local")
 public class TokenTest {
 
     @Autowired

@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @ExtendWith(MockitoExtension.class)
-@ActiveProfiles("server")
+@ActiveProfiles("local")
 public class MemberLoginValidTest {
 
     @MockBean
