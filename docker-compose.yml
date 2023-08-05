@@ -1,14 +1,14 @@
 services:
   db:
     image: mysql:8.1.0
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_DATABASE: test
       MYSQL_ROOT_HOST: '%'
       MYSQL_ROOT_PASSWORD: test1234
     volumes:
       - ./data:/var/lib/mysql
-    ports:
-      - "3306:3306"
     networks:
       - test_network_02
   app:
