@@ -6,9 +6,7 @@ import com.assignment.domain.member.repository.MemberRepository;
 import com.assignment.exception.CustomException;
 import com.assignment.exception.ExceptionCode;
 import com.assignment.security.utils.CustomAuthorityUtils;
-import com.assignment.utils.CustomBeanUtils;
-
-
+import com.assignment.security.utils.CustomPasswordEncoder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,13 +24,11 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final CustomAuthorityUtils authorityUtils;
-    private final CustomBeanUtils customBeanUtils;
 
     public Member createMember(Member member) {
         verifyExistsEmail(member.getEmail());
 
         member.setPassword(encryptedPassword(member.getPassword()));
-
         List<String> roles = authorityUtils.createRoles(member.getEmail());
         member.setRoles(roles);
 
@@ -45,18 +41,15 @@ public class MemberService {
 
     @Transactional(readOnly = true)
     public Member findMember(Long memberId){
-
         return verifyExistsMemberId(memberId);
     }
 
 
     public void deleteMember(Long memberId) {
-
         memberRepository.deleteById(memberId);
     }
 
     private String encryptedPassword(String password){
-
         return passwordEncoder.encode(password);
     }
 
@@ -67,7 +60,12 @@ public class MemberService {
         if (member.isPresent()) {
             throw new CustomException(ExceptionCode.MEMBER_EXIST);
         }
+    }
 
+    private Member findByEmail(String email){
+        Member member = memberRepository.findByEmail(email).orElseThrow(() -> new CustomException(ExceptionCode.MEMBER_NOT_FOUND));
+
+        return member;
     }
 
     private Member verifyExistsMemberId(Long memberId){
