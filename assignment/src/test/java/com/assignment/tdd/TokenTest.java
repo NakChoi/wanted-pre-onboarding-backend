@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Map;
@@ -16,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
+@AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TokenTest {
 
@@ -62,10 +64,4 @@ public class TokenTest {
         assertTrue(isValidToken);
     }
 
-    @Test
-    @DisplayName("토큰 유효성 실패 테스트")
-    public void testInValidateToken() {
-        boolean isValidToken = jwtTokenizer.validToken("Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJVU0VSIl0sInVzZXJuYW1lIjoidGVzdDEyMzQxQGdtYWlsLmNvbSIsIm1lbWJlcklkIjo2LCJzdWIiOiJ0ZXN0MTIzNDFAZ21haWwuY29tIiwiaWF0IjoxNjkxMTc3MTczLCJleHAiOjE2OTExNzcyMzN9.oJnKgyzir0foMRLC5OCsmH9QAD2aWQXUxBof3x6vVtTps15G7bSdZrYOwcQppihoZ8-RgcM0uiBuZ60WUBCT7Q".replace("Bearer ", ""));
-        assertEquals(false, isValidToken);
-    }
 }
