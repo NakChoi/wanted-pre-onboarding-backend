@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.java.Log;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -36,14 +37,17 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         ObjectMapper objectMapper = new ObjectMapper();
         LoginDto loginDto = objectMapper.readValue(request.getInputStream(), LoginDto.class);
 
-        isEmailValid(loginDto.getUsername());
-        isPasswordValid(loginDto.getPassword());
+        loginDtoValidTest(loginDto);
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
 
         return authenticationManager.authenticate(authenticationToken);
     }
 
+    public void loginDtoValidTest(LoginDto loginDto){
+        isEmailValid(loginDto.getUsername());
+        isPasswordValid(loginDto.getPassword());
+    }
 
 
     private void isEmailValid(String email) {
@@ -70,26 +74,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         Member member = (Member) authResult.getPrincipal();
 
-        String accessToken = delegateAccessToken(member);
+        String accessToken = jwtTokenizer.delegateAccessToken(member);
 
         response.setHeader("Authorization", "Bearer " + accessToken);
 
     }
-
-    private String delegateAccessToken(Member member) {
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("username", member.getEmail());
-        claims.put("memberId", member.getMemberId());
-        claims.put("roles", member.getRoles());
-        String subject = member.getEmail();
-        Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getAccessTokenExpirationMinutes());
-
-        String base64EncodedSecretKey = jwtTokenizer.encodedBase64SecretKey(jwtTokenizer.getSecretKey());
-
-        String accessToken = jwtTokenizer.generateAccessToken(claims, subject, expiration, base64EncodedSecretKey);
-
-        return accessToken;
-    }
-
 
 }
