@@ -6,7 +6,7 @@ on:
       - deploy
     paths:
       - assignment/**
-      - .github/workflows/build-and-push.yml
+      - .github/workflows/deploy.yml
 
 env:
   REGISTRY: ghcr.io
