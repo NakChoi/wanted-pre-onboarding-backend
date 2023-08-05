@@ -2,6 +2,7 @@ package com.assignment.security.jwt;
 
 
 
+import com.assignment.domain.member.entity.Member;
 import com.assignment.exception.CustomException;
 import com.assignment.exception.ExceptionCode;
 import io.jsonwebtoken.Claims;
@@ -19,6 +20,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @Component
@@ -51,6 +53,20 @@ public class JwtTokenizer {
                 .compact();
     }
 
+    public String delegateAccessToken(Member member) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("username", member.getEmail());
+        claims.put("memberId", member.getMemberId());
+        claims.put("roles", member.getRoles());
+        String subject = member.getEmail();
+        Date expiration = getTokenExpiration(getAccessTokenExpirationMinutes());
+
+        String base64EncodedSecretKey = encodedBase64SecretKey(getSecretKey());
+
+        String accessToken = generateAccessToken(claims, subject, expiration, base64EncodedSecretKey);
+
+        return accessToken;
+    }
 
 
     public Jws<Claims> getClaims(String jws) {
@@ -69,6 +85,22 @@ public class JwtTokenizer {
         }
     }
 
+    public boolean validToken(String jws) {
+        try {
+            String base64EncodedSecretKey = encodedBase64SecretKey(getSecretKey());
+            Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
+
+            Jws<Claims> claims = Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(jws);
+
+            return true;
+        }catch (ExpiredJwtException e){
+            return false;
+        }
+    }
+
 
     public void verifySignature(String jws, String base64EncodedSecretKey) {
         Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
@@ -76,8 +108,9 @@ public class JwtTokenizer {
         Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
-                .parseClaimsJws(jws);
+                .parseClaimsJws(jws); //검증역할도함.
     }
+
 
     public Date getTokenExpiration(int expirationMinutes) {
         Calendar calendar = Calendar.getInstance();

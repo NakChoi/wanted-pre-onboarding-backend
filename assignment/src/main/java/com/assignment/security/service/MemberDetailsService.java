@@ -5,6 +5,7 @@ import com.assignment.domain.member.repository.MemberRepository;
 import com.assignment.exception.CustomException;
 import com.assignment.exception.ExceptionCode;
 import com.assignment.security.utils.CustomAuthorityUtils;
+import com.assignment.security.utils.CustomPasswordEncoder;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +23,8 @@ import java.util.Optional;
 public class MemberDetailsService implements UserDetailsService {
     private final MemberRepository memberRepository;
     private final CustomAuthorityUtils authorityUtils;
-    private final PasswordEncoder passwordEncoder;
+
+    private final CustomPasswordEncoder customPasswordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
@@ -37,7 +39,7 @@ public class MemberDetailsService implements UserDetailsService {
         MemberDetails(Member member){
             setMemberId(member.getMemberId());
             setEmail(member.getEmail());
-            setPassword(passwordEncoder.encode(member.getPassword()));
+            setPassword(member.getPassword());
             setRoles(member.getRoles());
         }
         @Override
