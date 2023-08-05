@@ -28,14 +28,7 @@ public class PostService {
     private final CustomBeanUtils customBeanUtils;
 
     public Post writePost(Post post){
-
-        System.out.println(post.getContent());
-        System.out.println(post.getMember().getMemberId());
-        System.out.println(post.getTitle());
-
         Post savedPost = postRepository.save(post);
-
-
 
         return savedPost;
     }
@@ -47,7 +40,6 @@ public class PostService {
     }
 
     public Page<Post> findPosts(int page, int size) {
-
             Page<Post> questionPage = postRepository.findAll(PageRequest.of(page, size, Sort.by("createdAt").descending()));
 
             return questionPage;
@@ -66,7 +58,6 @@ public class PostService {
     }
 
     public void deletePost(Long id, Member member) {
-
         Post verifiedPost = verifyBoardById(id);
 
         if (!Objects.equals(verifiedPost.getMember().getMemberId(), member.getMemberId())) {
@@ -76,9 +67,8 @@ public class PostService {
         postRepository.delete(verifiedPost);
     }
 
-    private Post verifyBoardById(Long id){
-
-        Post verifiedPost = postRepository.findById(id).orElseThrow(() -> new CustomException(ExceptionCode.POST_EXISTS));
+    public Post verifyBoardById(Long id){
+        Post verifiedPost = postRepository.findById(id).orElseThrow(() -> new CustomException(ExceptionCode.POST_NOT_EXISTS));
 
         return verifiedPost;
     }
