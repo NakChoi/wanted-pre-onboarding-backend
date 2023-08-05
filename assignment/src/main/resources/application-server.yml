@@ -5,7 +5,8 @@ spring:
     hibernate:
       ddl-auto: create
   datasource:
-    url: jdbc:mysql://localhost:3306/mysqlDB
+#    url: jdbc:mysql://localhost:3306/mysqlDB
+    url: ${MYSQL_URL}
     username: root
     password: "!As1032113"
     driver-class-name: com.mysql.cj.jdbc.Driver
