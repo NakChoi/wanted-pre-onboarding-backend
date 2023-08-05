@@ -6,9 +6,9 @@ spring:
       ddl-auto: create
   datasource:
 #    url: jdbc:mysql://localhost:3306/mysqlDB
-    url: ${MYSQL_URL}
-    username: air
-    password: "test1234"
+    url: jdbc:mysql://db:3306/test
+    username: root
+    password: ""
     driver-class-name: com.mysql.cj.jdbc.Driver
 mail:
   address:
