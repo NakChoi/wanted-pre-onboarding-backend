@@ -52,7 +52,6 @@ public class JwtTokenizer {
                 .signWith(key)
                 .compact();
     }
-
     public String delegateAccessToken(Member member) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("username", member.getEmail());
