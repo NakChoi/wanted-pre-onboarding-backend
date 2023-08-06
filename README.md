@@ -27,7 +27,8 @@ docker compose up -d
 
 ## `데이터베이스 테이블 구조`
 
-![image](https://github.com/NakChoi/wanted-pre-onboarding-backend/assets/92242517/917e98a7-6f17-4a53-9cc0-ab33c74d0a8b)
+![image](https://github.com/NakChoi/wanted-pre-onboarding-backend/assets/92242517/c637592c-9f99-4403-908c-99e388e398c5)
+
 
 <br/><br>
 
