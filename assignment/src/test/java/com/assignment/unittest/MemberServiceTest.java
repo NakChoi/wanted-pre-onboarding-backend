@@ -1,4 +1,4 @@
-package com.assignment.tdd;
+package com.assignment.unittest;
 
 import com.assignment.domain.member.dto.MemberDto;
 import com.assignment.domain.member.entity.Member;
