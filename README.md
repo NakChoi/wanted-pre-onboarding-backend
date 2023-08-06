@@ -41,6 +41,51 @@ Spring Boot와 Spring Security를 활용하여 빠르고 보안적으로 안정�
 
 
 <br/><br>
-## '구현한 API의 동작을 촬영한 데모 영상 링크'
+## `구현한 API의 동작을 촬영한 데모 영상 링크`
+
+[최낙준 -  API의 동작을 촬영한 데모 영상 링크 (YouTube)](https://www.youtube.com/watch?v=vDQ1pdOQeU8&ab_channel=%EC%B5%9C%EB%82%99%EC%A4%80)
+
+
+
+
+<br/><br>
+
+
+
+### `Docker Image, Git Actions, ghcr.io, Docekr Compose, AWS EC2 로 CI/CD,구축하였습니다. `
+
+        +-----------------------------------------+
+        |           GitHub Repository            |
+        |               (Source)                  |
+        +-----------------------------------------+
+                                |
+                                | git push
+                                |
+        +-----------------------------------------+
+        |         GitHub Actions (CI)             |
+        +-----------------------------------------+
+                    |              |
+                    |              | CI Success
+                    |              |
+        +-----------v--------------v----------+
+        |   ghcr.io / Docker Hub / public Repo  |
+        |       (Docker Images)                 |
+        +------------------------------------+
+                    |              |
+                    | docker pull  |
+                    |              |
+        +-----------v--------------v----------+
+        |           Docker Compose             |
+        |            (Deployment)              |
+        +------------------------------------+
+                    |              |
+                    |   docker     | Deployment Success
+                    |   compose    |
+        +-----------v--------------v----------+
+        |          Application                |
+        |         (Running Service)            |
+        +------------------------------------+
+
+
 
 
