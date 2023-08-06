@@ -1,9 +1,10 @@
+<br/><br>
 # wanted-pre-onboarding-backend
 
  #### 안녕하세요 이번에 wanted-pre-onboarding-be에 지원하게 된 최낙준이라고 합니다.
 
-
-## `docker compose`
+<br/><br>
+## `docker compose 실행 방법`  
 
 ```bash
 # 1. 환경변수 설정
@@ -16,12 +17,29 @@ docker compose down
 docker compose up -d
 ```
 
-
+<br/><br>
 
 ## `API 명세서 입니다.`
 
-<a href="https://documenter.getpostman.com/view/24689222/2s9XxyRt9V" target="_blank"> https://documenter.getpostman.com/view/24689222/2s9XxyRt9V </a>
+[PostMan API 명세서 링크입니다!](https://documenter.getpostman.com/view/24689222/2s9XxyRt9V)  
 
-[링크이름](https://documenter.getpostman.com/view/24689222/2s9XxyRt9V){: target="_blank"}
-<a href="https://documenter.getpostman.com/view/24689222/2s9XxyRt9V" target="_blank">example</a>
+<br/><br>
+
+## `데이터베이스 테이블 구조`
+
+![image](https://github.com/NakChoi/wanted-pre-onboarding-backend/assets/92242517/917e98a7-6f17-4a53-9cc0-ab33c74d0a8b)
+
+<br/><br>
+
+## `구현 방법 및 이유`
+Spring Boot와 Spring Security를 활용하여 빠르고 보안적으로 안정적인 웹 애플리케이션을 개발하려 노력했습니다. 또 MySQL을 사용하여 데이터를 효율적으로 관리하고, ㅎGithub actions, Docker Container와 Docker Compose를 채택하여 애플리케이션과 DB를 가상화하고, AWS EC2를 통해 클라우드 환경에서 배포하여 안정성과 확장성을 보장하였습니다. 
+
+또한, Git Flow 전략을 통해 Main, Deploy, feat/member, feat/post 등을 각각의 브랜치로 분리하여 개발과정을 관리하는 전략으로, 병렬 개발과 안정적인 배포를 하려고 노력했습니다. 이러한 기술 스택과 방법을 통해 프로젝트를 구현하고 배포하여 비용과 시간을 절감하고 안정성을 보장할 수 있었습니다.
+
+
+
+
+<br/><br>
+## '구현한 API의 동작을 촬영한 데모 영상 링크'
+
 
