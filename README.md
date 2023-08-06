@@ -1,5 +1,8 @@
 # wanted-pre-onboarding-backend
 
+ #### 안녕하세요 이번에 wanted-pre-onboarding-be에 지원하게 된 최낙준이라고 합니다.
+
+
 ## `docker compose`
 
 ```bash
@@ -12,3 +15,13 @@ docker compose pull
 docker compose down
 docker compose up -d
 ```
+
+
+
+## `API 명세서 입니다.`
+
+<a href="https://documenter.getpostman.com/view/24689222/2s9XxyRt9V" target="_blank"> https://documenter.getpostman.com/view/24689222/2s9XxyRt9V </a>
+
+[링크이름](https://documenter.getpostman.com/view/24689222/2s9XxyRt9V){: target="_blank"}
+<a href="https://documenter.getpostman.com/view/24689222/2s9XxyRt9V" target="_blank">example</a>
+
