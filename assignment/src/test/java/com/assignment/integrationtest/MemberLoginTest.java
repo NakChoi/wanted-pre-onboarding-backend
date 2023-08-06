@@ -1,4 +1,4 @@
-package com.assignment.tdd;
+package com.assignment.integrationtest;
 
 import com.assignment.domain.member.entity.Member;
 import com.assignment.domain.member.repository.MemberRepository;
