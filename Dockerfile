@@ -19,4 +19,4 @@ WORKDIR /app
 
 COPY --from=builder /app/build/libs/*.jar ./app.jar
 
-CMD ["java", "-Dspring.profiles.active=server" ,"-jar", "app.jar"]
+CMD ["sh", "-c", "java", "-Dspring.profiles.active=server" ,"-jar", "app.jar"]
