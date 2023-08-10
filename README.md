@@ -48,8 +48,8 @@ docker compose up -d
 
      Method: POST
      - URL: http://43.201.235.107:8080/v1/api/posts
-     - Request body 에 제목과 본문 내용을 담아야합니다.
-     - 게시글 생성을 하기 위해서는 요청 헤더에 발급받은 JWT AccessToken을 포함시켜서 보내주세요.
+     - Request body 에 제목과 본문 내용을 작성해야합니다.
+     - 게시글 생성을 하기 위해서는 요청 헤더에 발급받은 JWT AccessToken을 포함시켜주세요.
 
 <br/><br>
 
@@ -81,7 +81,7 @@ docker compose up -d
      - 제목이나 내용을 선택적으로 수정할 수도 있고, 한번에 모두 수정할 수도 있습니다.
      - 요청 본문에 수정하고 싶은 내용을 포함하여 요청을 보내주세요.
      - 게시글 수정은 게시글 작성자만 할 수 있습니다.
-     - 게시글 수정을 하기 위해서는 요청 헤더에 발급받은 JWT AccessToken을 포함시켜서 보내주세요.
+     - 게시글 수정을 하기 위해서는 요청 헤더에 발급받은 JWT AccessToken을 포함시켜주세요.
 
 <br/><br>
 
@@ -91,7 +91,7 @@ docker compose up -d
      - URL: http://43.201.235.107:8080/v1/api/posts/{post-id}
      - 삭제하고 싶은 게시글의 ID를 URL 마지막에 붙여서 요청을 보내주세요.
      - 게시글 삭제는 게시글 작성자만 할 수 있습니다.
-     - 게시글 삭제를 하기 위해서는 요청 헤더에 발급받은 JWT AccessToken을 포함시켜서 보내주세요.
+     - 게시글 삭제를 하기 위해서는 요청 헤더에 발급받은 JWT AccessToken을 포함시켜주세요.
 
 <br/><br>
 
