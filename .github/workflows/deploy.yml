@@ -78,4 +78,4 @@ jobs:
 
             docker compose pull
             docker compose down
-            nohup docker compose up -d &
+            docker compose up -d
