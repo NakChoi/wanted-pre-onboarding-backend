@@ -19,4 +19,4 @@ WORKDIR /app
 
 COPY --from=builder /app/build/libs/*.jar ./app.jar
 
-CMD ["nohup java", "-Dspring.profiles.active=server" ,"-jar", "app.jar"]
+CMD ["nohup", "java", "-Dspring.profiles.active=server" ,"-jar", "app.jar"]
